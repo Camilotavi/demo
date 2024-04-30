@@ -15,6 +15,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Configurando Gradle
-        uses: gradle/gradle-buid-action@v2
+        uses: gradle/gradle-build-action@v2
       - name: Compilando el proyecto
         uses: ./gradlew build
