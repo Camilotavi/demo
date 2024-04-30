@@ -20,7 +20,6 @@ public class ClienteController {
     @PostMapping("/cliente")
     public String agregarCliente(@RequestBody Cliente cliente) {
         service.anadirCliente(cliente);
-        System.out.println("aaaaa");
         return "Cliente guardado";
     }
 
