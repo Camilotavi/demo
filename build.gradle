@@ -1,0 +1,53 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'info.solidsoft.pitest' version '1.15.0'
+}
+
+group = 'com.example.demo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+	targetCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-graphql'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-mysql'
+	implementation 'com.h2database:h2'
+	implementation 'com.mysql:mysql-connector-j'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'com.h2database:h2'
+	implementation 'com.mysql:mysql-connector-j'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework:spring-webflux'
+	testImplementation 'org.springframework.graphql:spring-graphql-test'
+	implementation 'mysql:mysql-connector-java:8.0.27'
+	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.0'
+	testImplementation 'org.junit.vintage:junit-vintage-engine:5.9.0'
+	testImplementation 'org.pitest:pitest-junit5-plugin:1.2.1'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+pitest {
+	jvmArgs = ['-ea']
+	testPlugin = 'junit5'
+	outputFormats = ['HTML']
+	targetClasses = ['com.example.demo.service*']
+	targetTests = ['com.example.demo.pruebasUnitarias*']
+}
